@@ -51,22 +51,22 @@ export const workData = [
   {
     title: "Palestine",
     description: "Palestine design",
-    bgImage: "/portfolioTurky/work3.png",
+    bgImage: "./work3.png",
   },
   {
     title: "Strawberry",
     description: "Strawberry design",
-    bgImage: "/portfolioTurky/work5.png",
+    bgImage: "./work5.png",
   },
   {
     title: "7 Of October",
     description: "the 7 of october",
-    bgImage: "/portfolioTurky/work4.png",
+    bgImage: "./work4.png",
   },
   {
     title: "Febreze",
     description: "Febreze design",
-    bgImage: "/portfolioTurky/work1.jpg",
+    bgImage: "./work1.jpg",
   },
 ];
 
