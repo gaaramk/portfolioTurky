@@ -2,11 +2,11 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gaaramk.github.io/portfolioTurky",
+  "deploy": "next build && next export && gh-pages -d out",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "deploy": "next build && gh-pages -d out",
+    "deploy": "next build && next export && gh-pages -d out",
     "start": "next start",
     "lint": "next lint"
   },
