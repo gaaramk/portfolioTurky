@@ -1,102 +1,101 @@
 "use client";
-import { ArrowUpRightIcon, Menu, XCircle } from "lucide-react";
-import Link from "next/link";
-import { ModeToggle } from "./ModeToggle";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { Menu, XCircle, ArrowUpRightIcon } from "lucide-react";
+import { ModeToggle } from "./ModeToggle";
 
 const Navbar = () => {
   const [openSide, setOpenSide] = useState(false);
   const [isScroll, setIsScroll] = useState(false);
 
   const handleToggle = () => {
-    setOpenSide(!openSide);
+    setOpenSide((prev) => !prev);
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScroll(true);
-      } else {
-        setIsScroll(false);
-      }
+      setIsScroll(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navLinks = [
+    { label: "Home", href: "#top" },
+    { label: "About me", href: "#aboutme" },
+    { label: "Services", href: "#services" },
+    { label: "My Work", href: "#mywork" },
+    { label: "Contact Me", href: "#contact", icon: <ArrowUpRightIcon /> },
+  ];
+
   return (
     <>
       <nav
-        className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 
-        flex justify-between items-center z-50 transition-all duration-300 ${
+        className={`fixed top-0 w-full z-50 px-5 lg:px-8 xl:px-[8%] py-4 flex justify-between items-center transition-all duration-300
+        ${
           isScroll
-            ? "bg-white dark:bg-neutral-900 shadow-sm backdrop-blur-lg bg-opacity-50 "
+            ? "bg-white dark:bg-neutral-900 shadow-sm backdrop-blur-lg bg-opacity-50"
             : ""
         }`}
+        aria-label="Main navigation"
       >
-        <Link href="#top">
-          <h1 className="font-bold text-2xl">Turky</h1>
+        <Link href="#top" className="text-2xl font-bold">
+          Turky
         </Link>
 
-        <ul className="hidden md:flex items-center gap-5">
-          {["Home", "About me", "Services", "My Work"].map((item, i) => (
-            <li key={i} className="hover:text-emerald-800">
-              <Link href={`#${item.toLowerCase().replace(/\s/g, "")}`}>
-                {item}
+        {/* Desktop Navigation */}
+        <ul className="hidden md:flex items-center gap-6 font-medium">
+          {navLinks.map((link, index) => (
+            <li key={index} className="hover:text-emerald-800 transition">
+              <Link href={link.href} className="flex items-center gap-1">
+                {link.label}
+                {link.icon && link.icon}
               </Link>
             </li>
           ))}
-          <li className="hover:text-emerald-800">
-            <Link href="#contact" className="flex items-center">
-              Contact Me
-              <ArrowUpRightIcon />
-            </Link>
-          </li>
         </ul>
 
+        {/* Theme Toggle + Hamburger */}
         <div className="flex items-center gap-5">
           <ModeToggle />
-          <button className="md:hidden cursor-pointer" onClick={handleToggle}>
+          <button
+            className="md:hidden"
+            onClick={handleToggle}
+            aria-label="Toggle menu"
+          >
             <Menu />
           </button>
         </div>
 
-        <ul
-          className={
-            `md:hidden flex flex-col gap-5 py-20 px-10 fixed top-0 bottom-0 w-64 h-screen bg-rose-50 dark:bg-rose-900 transition duration-500 z-50` +
-            (openSide ? " right-0" : " right-[-100%]")
-          }
+        {/* Mobile Side Menu */}
+        <aside
+          className={`md:hidden fixed top-0 right-0 h-screen w-64 bg-rose-50 dark:bg-rose-900 flex flex-col gap-6 py-20 px-8 z-50 transition-transform duration-500
+          ${openSide ? "translate-x-0" : "translate-x-full"}`}
         >
-          <div
-            className="absolute top-5 right-5 cursor-pointer"
+          <button
             onClick={handleToggle}
+            className="absolute top-5 right-5"
+            aria-label="Close menu"
           >
             <XCircle />
-          </div>
+          </button>
 
-          {["Home", "About me", "Services", "My Work"].map((item, i) => (
-            <li key={i} className="hover:text-emerald-800">
-              <Link
-                href={`#${item.toLowerCase().replace(/\s/g, "")}`}
-                onClick={handleToggle}
-              >
-                {item}
-              </Link>
-            </li>
-          ))}
-
-          <li className="hover:text-emerald-800">
-            <Link
-              href="#contact"
-              className="flex items-center"
-              onClick={handleToggle}
-            >
-              Contact Me
-              <ArrowUpRightIcon />
-            </Link>
-          </li>
-        </ul>
+          <ul className="flex flex-col gap-6 text-lg font-medium">
+            {navLinks.map((link, index) => (
+              <li key={index} className="hover:text-emerald-800 transition">
+                <Link
+                  href={link.href}
+                  className="flex items-center gap-2"
+                  onClick={handleToggle}
+                >
+                  {link.label}
+                  {link.icon && link.icon}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </aside>
       </nav>
     </>
   );

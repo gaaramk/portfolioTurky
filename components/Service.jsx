@@ -1,9 +1,10 @@
 "use client";
+
 import { serviceData } from "@/assets/assets";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const Service = () => {
   return (
@@ -54,21 +55,21 @@ const Service = () => {
               whileHover={{ scale: 1.05 }}
               key={index}
               className="border border-gray-400 px-8 py-12 rounded-lg dark:border-gray-700
-            hover:shadow-[4px_4px_0px_0px_rgb(0,0,0)] dark:hover:shadow-[4px_4px_0px_0px_rgb(100,100,100)]
-             cursor-pointer  hover:translate-y-1 duration-300"
+              hover:shadow-[4px_4px_0px_0px_rgb(0,0,0)] dark:hover:shadow-[4px_4px_0px_0px_rgb(100,100,100)]
+              cursor-pointer hover:translate-y-1 duration-300"
             >
               <Image
                 src={item.icon}
                 alt={item.title}
-                width={1920}
-                height={1080}
+                width={40}
+                height={40}
                 loading="lazy"
                 className="w-10"
               />
 
               <h3 className="text-lg my-5 dark:text-white">{item.title}</h3>
 
-              <p className="text-sm  dark:text-gray-300 leading-5">
+              <p className="text-sm dark:text-gray-300 leading-5">
                 {item.description}
               </p>
 

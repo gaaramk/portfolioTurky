@@ -1,7 +1,7 @@
 "use client";
 import { assets, infoList, toolsData } from "@/assets/assets";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const About = () => {
   return (
@@ -52,19 +52,19 @@ const About = () => {
             />
           </motion.figure>
 
-          <motion.figcaption
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex-1"
-          >
-            <p className="mb-10 max-w-2xl font-ovo">
+          <div className="flex-1">
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="mb-10 max-w-2xl font-ovo"
+            >
               Hello! I&apos;m Turky, a passionate graphic designer and brand
               strategist with a love for visual storytelling. My journey in the
               world of design began in 2019, and ever since, I&apos;ve been
               dedicated to crafting captivating designs that leave a lasting
               impression.
-            </p>
+            </motion.p>
 
             <motion.ul
               initial={{ opacity: 0 }}
@@ -74,9 +74,12 @@ const About = () => {
             >
               {infoList.map((item, index) => (
                 <motion.li
-                  whileHover={{ scale: 1.05 }}
                   key={index}
-                  className="borer-[0.5px] border-gray-400 rounded-xl p-5 cursor-pointer 
+                  whileHover={{ scale: 1.05 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className="border-[0.5px] border-gray-400 rounded-xl p-5 cursor-pointer 
                   hover:bg-[#fcf4ff] dark:hover:bg-[#2a004a] hover:translate-y-1 duration-300
                   hover:shadow-[4px_4px_0px_rgb(0,0,0)] dark:hover:shadow-[4px_4px_0px_rgb(255,255,255)]"
                 >
@@ -88,24 +91,12 @@ const About = () => {
                     loading="lazy"
                     className="w-7 mt-3"
                   />
-
-                  <motion.h3
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 1.3 }}
-                    className="my-4 font-semibold text-gray-700 dark:text-white"
-                  >
+                  <h3 className="my-4 font-semibold text-gray-700 dark:text-white">
                     {item.title}
-                  </motion.h3>
-
-                  <motion.p
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 1.4 }}
-                    className="text-gray-600 text-sm dark:text-white"
-                  >
+                  </h3>
+                  <p className="text-gray-600 text-sm dark:text-white">
                     {item.description}
-                  </motion.p>
+                  </p>
                 </motion.li>
               ))}
             </motion.ul>
@@ -123,7 +114,7 @@ const About = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 1.5, delay: 0.6 }}
-              className="flex items-center gap-5"
+              className="flex items-center gap-5 flex-wrap"
             >
               {toolsData.map((item, index) => (
                 <motion.li
@@ -143,7 +134,7 @@ const About = () => {
                 </motion.li>
               ))}
             </motion.ul>
-          </motion.figcaption>
+          </div>
         </motion.div>
       </motion.div>
     </section>

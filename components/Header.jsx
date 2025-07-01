@@ -1,9 +1,11 @@
 "use client";
+
 import { ArrowRight, Download } from "lucide-react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { assets } from "@/assets/assets";
-import { motion } from "motion/react";
+import { motion } from "framer-motion"; // ✅ تعديل مهم
+
 const Header = () => {
   return (
     <section className="py-12">
@@ -20,7 +22,7 @@ const Header = () => {
         >
           <Image
             src={assets.user_image}
-            alt="header-bg-color"
+            alt="User Profile"
             width={1920}
             height={1080}
             loading="lazy"
@@ -40,12 +42,12 @@ const Header = () => {
           Hi I'm Turky
           <Image
             src={assets.hand_icon}
-            alt="hand-icon"
+            alt="Waving Hand"
             width={20}
             height={20}
             loading="lazy"
             className="w-6"
-          ></Image>
+          />
         </motion.h3>
 
         <motion.h2
@@ -57,7 +59,7 @@ const Header = () => {
           }}
           className="text-3xl md:text-3xl lg:text-[66px] font-ovo"
         >
-          Graphic Designer | Branding Specialist | Visual Storyteller{" "}
+          Graphic Designer | Branding Specialist | Visual Storyteller
         </motion.h2>
 
         <motion.p
@@ -85,15 +87,7 @@ const Header = () => {
             }}
             href="#contact"
           >
-            <Button
-              initial={{ y: 30, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{
-                duration: 0.6,
-                delay: 1,
-              }}
-              variant="contact"
-            >
+            <Button variant="contact">
               Contact Me
               <ArrowRight />
             </Button>

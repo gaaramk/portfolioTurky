@@ -1,18 +1,7 @@
-import { Outfit, Ovo } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/Theme-provider";
 import { Toaster } from "react-hot-toast";
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const ovo = Ovo({
-  subsets: ["latin"],
-  weight: ["400"],
-});
 
 export const metadata = {
   title: "Portfolio - Turky",
@@ -21,10 +10,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth" >
-      <body
-        className={`${outfit.className} ${ovo.className} antialiased leading-8 overflow-x-hidden`}
-      >
+    <html lang="en" className="scroll-smooth">
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Ovo&family=Outfit:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="antialiased leading-8 overflow-x-hidden font-outfit">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

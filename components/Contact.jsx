@@ -2,13 +2,12 @@
 
 import { ArrowRight } from "lucide-react";
 import toast from "react-hot-toast";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const Contact = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-
     formData.append("access_key", "84884203-29bd-4eb3-8010-ba80fceba65c");
 
     const response = await fetch("https://api.web3forms.com/submit", {
@@ -77,7 +76,6 @@ const Contact = () => {
               transition={{ duration: 0.6, delay: 1.1 }}
               type="text"
               name="name"
-              id="name"
               placeholder="Your Name"
               className="flex-1 p-3 outline-none border-[0.5px] border-gray-400
               rounded-md bg-white dark:text-black"
@@ -90,10 +88,9 @@ const Contact = () => {
               transition={{ duration: 0.6, delay: 1.2 }}
               type="email"
               name="email"
-              id="email"
               placeholder="Your Email"
               className="flex-1 p-3 outline-none border-[0.5px] border-gray-400
-              rounded-md bg-white  dark:text-black"
+              rounded-md bg-white dark:text-black"
               required
             />
           </div>
@@ -103,8 +100,6 @@ const Contact = () => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.3 }}
             name="message"
-            id="message"
-            cols="30"
             rows="6"
             placeholder="Your Message"
             className="w-full p-3 outline-none border-[0.5px] border-gray-400
